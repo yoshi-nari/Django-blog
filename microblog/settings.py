@@ -23,10 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r^kyh$5hz=62styii!158s6ms8%soo_i4!ucng-4ohl2)m1ml!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 
+#DEBUG = True
 DEBUG = False
 
+#ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["https://shun-django-newblog.herokuapp.com/",]
 
 
@@ -109,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'Asia/tokyo'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
