@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-r^kyh$5hz=62styii!158s6ms8%soo_i4!ucng-4ohl2)m1ml!
 
 DEBUG = False
 
-ALLOWED_HOSTS = [https://shun-django-newblog.herokuapp.com/]
+ALLOWED_HOSTS = [https://shun-django-newblog.herokuapp.com/,]
 
 
 # Application definition
