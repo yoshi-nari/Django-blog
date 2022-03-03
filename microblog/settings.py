@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+from socket import gethostname
+hostname = gethostname()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +27,10 @@ SECRET_KEY = 'django-insecure-r^kyh$5hz=62styii!158s6ms8%soo_i4!ucng-4ohl2)m1ml!
 # SECURITY WARNING: don't run with debug turned on in production!
 
 #DEBUG = True
-DEBUG = False
+#DEBUG = False
 
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["https://shun-django-newblog.herokuapp.com/",]
+#ALLOWED_HOSTS = ["*"]
+#ALLOWED_HOSTS = ["https://shun-django-newblog.herokuapp.com/",]
 
 
 # Application definition
@@ -78,12 +80,25 @@ WSGI_APPLICATION = 'microblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if "" in hostname:
+    # デバッグ環境
+    DEBUG = True 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+    ALLOWED_HOSTS = []
+else:
+    # 本番環境
+    DEBUG = False
+    import dj_database_url
+    db_from_env = dj_database_url.config()
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
+    ALLOWED_HOSTS = ['*']
 
 
 # Password validation
